@@ -1,5 +1,9 @@
 body{
     background-color: url(nighl-4702174_960_720.webp);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: aqua;
 }
 .hi-slide{
     position: relative;
