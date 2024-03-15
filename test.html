@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+  .carousel-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.carousel img {
+  width: 100%;
+  height: auto;
+  margin: 20px;
+}
+
+.prev-btn,
+.next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.prev-btn {
+    left: 10px;
+}
+
+.next-btn {
+    right: 10px;
+}
+</style>
+<body>
+  <div class="carousel-container">
+    <div class="carousel">
+      <img src="klv/img/download.jfif" alt="Image 1">
+      <img src="klv/img/download.jfif" alt="Image 2">
+      <img src="klv/img/download.jfif" alt="Image 3">
+    </div>
+    <button class="prev-btn">&lt;</button>
+    <button class="next-btn">&gt;</button>
+  </div>
+      <script>
+      const carousel = document.querySelector('.carousel');
+const images = document.querySelectorAll('.carousel img');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const imgCount = images.length;
+const imgWidth = images[0].clientWidth;
+let counter = 0;
+
+
+
+carousel.style.transform = `translateX(${-slideWidth * counter}px)`;
+
+nextBtn.addEventListener('click', () => {
+        if (counter >= slides.length - 1) return;
+        carousel.style.transition = 'transform 0.5s ease-in-out';
+        counter++;
+        carousel.style.transform = `translateX(${-slideWidth * counter}px)`;
+    });
+
+prevBtn.addEventListener('click', () => {
+        if (counter <= 0) return;
+        carousel.style.transition = 'transform 0.5s ease-in-out';
+        counter--;
+        carousel.style.transform = `translateX(${-slideWidth * counter}px)`;
+    });
+
+function updateCarousel() {
+  carousel.style.transform = `translateX(${-slideWidth * counter}px)`;
+
+  if (currentIndex === imgCount - 1 + 2) {
+    setTimeout(() => {
+      carousel.style.transition = 'none';
+      currentIndex = 0;
+      carousel.style.transform = `translateX(${-imgWidth}px)`;
+    }, 500);
+  } else if (currentIndex === 0) {
+    setTimeout(() => {
+      carousel.style.transition = 'none';
+      currentIndex = imgCount - 1;
+      carousel.style.transform = `translateX(${-imgWidth * imgCount}px)`;
+    }, 500);
+  }
+}
+      </script>
+</body>
+</html>
