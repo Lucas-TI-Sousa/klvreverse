@@ -3,30 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrossel</title>
-    <link rel="stylesheet" href="style.css">
-    
+    <title>Document</title>
 </head>
-    <body>
-        <div class="slide hi-slide">
-            <div class="hi-prev"></div>
-            <div class="hi-next"></div>
-            <ul>
-                <li><img src="" alt=""></li>
-                <li><img src="img/images.jfif" alt=""></li>
-                <li><img src="img/images.jfif" alt=""></li>
-                <li><img src="img/images.jfif" alt=""></li>
-            </ul>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: sans-serif;
+    }
+    body{
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: green;
+    }
+    .slid-container{
+        max-width: 1120px;
+        width: 100%;
+        background-color: gray;
+        padding: 40px 0;
+    }
+    .slid-content{
+        margin: 0 40px;
+    }
+    .card{
+        
+        border-radius: 25px;
+        background-color: #FFF;
+    }
+
+    .image-content,
+    .card-content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 14px;
+    }
+    .image-content{
+        position: relative;
+        row-gap: 5px;
+        padding: 25px 0;
+    }
+    /* .overlay{
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background-color: #4070f4;
+    } */
+    .card-image{
+        position: relative;
+        height: 150px;
+        width: 150px;
+        border-radius: 50%;
+        background: #FFF;
+        padding: 3px;
+
+    }
+    .card-image .card-img{
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 4px solid green;
+    }
+    .nome{
+        font-size: 18px;
+        font-weight: 500;
+        color: #333;
+    }
+
+</style>
+<body>
+    <div class="slid-container">
+        <div class="slid-content">
+            <div class="card-wrapper">
+                <div class="card">
+                    <div class="image-content">
+                        <span class="overlay"></span>
+
+                        <div class="card-image">
+                            <img src="img/images.jpg" alt="" class="card-img">
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h2 class="nome">Notebooks</h2>
+                    </div>
+                </div>
+            </div>
         </div>
-        <script src="https://code.jquery.com/jquery-migrate-3.4.1.js"></script>
-        <script src="js/jquery.hislide.js"></script>
-        <script>
-            $('.slide').hislide();
-        </script>
- 
+    </div>
 
-   
-       
-    </body>
+    <script>
+        const carousel = document.querySelector('.carousel');
+const carouselItems = document.querySelectorAll('.carousel-item');
+const carouselWidth = carouselItems[0].offsetWidth;
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
 
+let currentIndex = 0;
+
+function nextSlide() {
+  currentIndex = (currentIndex + 1 ) % carouselItems.length;
+  updateCarousel();
+}
+
+function updateCarousel() {
+  const offset = currentIndex * carouselWidth;
+  carousel.style.transform = `translateX(${offset}px)`;
+}
+
+function prevSlide() {
+  currentIndex = (currentIndex - 1 ) % carouselItems.length;
+  updateCarousel();
+}
+
+prevBtn.addEventListener('click', prevSlide);
+nextBtn.addEventListener('click', nextSlide);
+    </script>
+</body>
+</html>
+</body>
 </html>
